@@ -15,7 +15,7 @@ def welcome(request):
 @api_view(['POST'])
 def joinRoom(request):
     data=request.data
-    
+    print(data)
     try:
         participant=Participant.objects.create(
                 name=data['name'],
