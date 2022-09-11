@@ -2,7 +2,7 @@ from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.models import User
-from .models import Participant
+from .models import Participant,Hosts
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework import status,authentication
@@ -17,14 +17,28 @@ def joinRoom(request):
     data=request.data
     print(data)
     try:
+        try:
+            nm=data['name']
+            print(nm)
+            isHost=Hosts.objects.filter(name=nm)
+            print(isHost)
+            if not isHost:
+               isAdmin=False
+            else:   
+               isAdmin=True
+        except:
+            print(data['name'])
+            isAdmin=False    
         participant=Participant.objects.create(
                 name=data['name'],
                 room_Name=data['room_Name'],
-                uid=data['uid'],
+                isAdmin=isAdmin,
+                uid=data['uid']
         )
         serializer=ParticipantSerializer(participant,many=False)
         return Response(serializer.data)
     except:
+        print(serializer.data)
         message={'detail':'User with this Name Already Exists'}    
         return Response(message,status=status.HTTP_400_BAD_REQUEST)
 
