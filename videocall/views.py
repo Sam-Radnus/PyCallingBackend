@@ -45,8 +45,9 @@ def joinRoom(request):
 @api_view(['GET'])
 def leaveRoom(request,pk):
     participant=Participant.objects.get(uid=pk)
+    name=participant['name']
     participant.delete()
-    return Response('Participant was deleted')
+    return Response(name+"left the room")
 
 @api_view(['GET'])
 def getParticipantInfo(request,pk,sk):
