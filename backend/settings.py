@@ -28,7 +28,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['pycalling.herokuapp.com','127.0.0.1']
 
 
-STATIC_ROOT = 
+STATIC_ROOT = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,7 +48,7 @@ MIDDLEWARE = [
      'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-      "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -125,8 +125,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
-STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
 
 # Default primary key field type
