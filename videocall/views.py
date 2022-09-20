@@ -41,11 +41,12 @@ def joinRoom(request):
         print(serializer.data)
         message={'detail':'User with this Name Already Exists'}    
         return Response(message,status=status.HTTP_400_BAD_REQUEST)
-
+#none
 @api_view(['GET'])
 def leaveRoom(request,pk):
     participant=Participant.objects.get(uid=pk)
     print(":"+str(participant))
+    print("")
     name=str(participant)
     participant.delete()
     return Response(name+" left the room")
