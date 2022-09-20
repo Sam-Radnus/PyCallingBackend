@@ -47,7 +47,7 @@ def leaveRoom(request,pk):
     participant=Participant.objects.get(uid=pk)
     print(":"+str(participant))
     name=str(participant)
-    participant.all().delete()
+    participant.delete()
     return Response(name+" left the room")
 
 @api_view(['GET'])
